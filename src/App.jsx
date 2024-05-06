@@ -1,33 +1,31 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div class="main-container">
+      <div class="header">
+        <h1 class ="icon">H-1</h1>
+        <h1 class ="icon">H-2</h1>
+        <h1 class ="icon">H-3</h1>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div class="card-small">
+        <img class="card-image" src="../resources/Images/DinoTest.jpg" alt="Post image" />
+        <h2 class="card-title">Wild dinos spotted</h2>
+        <p class="card-body">I regret to inform all living beings that dinos are extinct no more. There have been several attacks on cities such as Pochilandia and Rubbermypants over the last few days, with a total of 4 children being killed whilst adults celebrated their deaths with alcohol and drugs. </p>
+        <div class="card-icons">
+          <h1 class ="icon">I-1</h1>
+          <h1 class ="icon">I-2</h1>
+          <h1 class ="icon">I-3</h1>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div class="footer">
+        <h1 class ="icon">F-1</h1>
+        <h1 class ="icon">F-2</h1>
+      </div>
+    </div>
     </>
   )
 }
