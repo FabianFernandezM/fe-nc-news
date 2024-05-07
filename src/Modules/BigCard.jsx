@@ -5,11 +5,13 @@ import axios from 'axios';
 
 export default function BigCard({article, comments}) {
 
+    const [patchValue, setPatchValue] = useState(0)
     const [currVote, setCurrVote] = useState(0)
     const [counter, setCounter] = useState(article.votes)
     const [loadingVotes, setLoadingVotes] = useState(false)
 
     const handleVote = (value) => {
+        setPatchValue(value)
         setCurrVote(currVote+value)
         setCounter(counter+value)
     }
@@ -17,11 +19,11 @@ export default function BigCard({article, comments}) {
     useEffect(()=> {
         setLoadingVotes(true)
         if (article.length !== 0) 
-        axios.patch(`https://nc-news-78g8.onrender.com/api/articles/${article.article_id}`, { inc_votes : currVote })
+        axios.patch(`https://nc-news-78g8.onrender.com/api/articles/${article.article_id}`, { inc_votes : patchValue })
         .then((data)=>{
             setLoadingVotes(false)
         })
-    }, [currVote])
+    }, [counter])
 
    return (
         <>

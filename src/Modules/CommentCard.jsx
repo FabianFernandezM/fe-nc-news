@@ -2,24 +2,23 @@ import { useEffect, useState } from "react"
 import axios from 'axios';
 
 export default function CommentCard({comment}) {
-
-    console.log(comment)
-
     const date = new Date(comment.created_at)
     const datesliced = date.toString().slice(3, 21)
 
+    const [patchValue, setPatchValue] = useState(0)
     const [counter, setCounter] = useState(comment.votes)
     const [loadingVotes, setLoadingVotes] = useState(false)
     const [currVote, setCurrVote] = useState(0)
 
     const handleVote = (value) => {
+        setPatchValue(value)
         setCurrVote(currVote+value)
         setCounter(counter+value)
     }
 
     useEffect(()=> {
         setLoadingVotes(true)
-        axios.patch(`https://nc-news-78g8.onrender.com/api/comments/${comment.comment_id}`, { inc_votes : currVote })
+        axios.patch(`https://nc-news-78g8.onrender.com/api/comments/${comment.comment_id}`, { inc_votes : patchValue })
         .then(()=>{
             setLoadingVotes(false)
         })
