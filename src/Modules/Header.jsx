@@ -1,10 +1,12 @@
+import {Link} from 'react-router-dom'
+
 export default function Header() {
     return (
         <>
             <div className="header">
-            <h1 className ="icon">H-1</h1>
-            <h1 className ="icon">H-2</h1>
-            <h1 className ="icon">H-3</h1>
+                <Link to={`/`} className="icon"><h2>Back</h2></Link>
+                <Link to={`/`} className="icon"><h2>Search</h2></Link>
+                <Link to={`/`} className="icon"><h2>Profile</h2></Link>
             </div>
         </>
     )

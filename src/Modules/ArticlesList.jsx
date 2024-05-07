@@ -18,7 +18,7 @@ export default function ArticlesList() {
         setIsLoading(false)
     }, [])
 
-    if (articlesList.length === 0) return <p>Loading...</p>
+    if (articlesList.length === 0) return <h1>Loading...</h1>
 
     else return (
         <div className="list-container">
