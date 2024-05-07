@@ -8,7 +8,7 @@
 }
 
 * {
-  border: blue px solid;
+  border: blue 0px solid;
 }
 
 body {
@@ -59,6 +59,11 @@ body {
   scrollbar-width: none;
 }
 
+.comment-container {
+  display: block;
+  overflow: auto;
+}
+
 .card-small {
   display: grid;
   grid-template-columns: 30% 65%;
@@ -86,7 +91,6 @@ body {
 .card-big {
   display: grid;
   grid-template-columns: 30% 65%;
-  grid-template-rows: 40% 7% 25% 10% 20%;
   grid-template-areas:
     'image image'
     'title title'
@@ -101,11 +105,9 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-
-  @media (max-height: 600px) {
-    height: 150px;
-
-  }
+  margin-bottom: 20px;
+  scrollbar-width: none;
+  height: auto;
 }
 
 .card-image {
@@ -117,15 +119,13 @@ body {
   align-self: center;
   }
 .card-title {grid-area: title; text-align: left; text-wrap:nowrap;}
-.card-body {grid-area: body; text-align: left; overflow-y: scroll;}
+.card-body {grid-area: body; text-align: left; overflow-y: auto;}
 .card-icons {
   display:flex;
   grid-area: icons;
 }
 .card-comments {
-  display:flex;
-  flex-direction: column;
-  overflow-y: scroll;
+  height: fit-content;
   grid-area: comments;
 }
 

@@ -12,7 +12,11 @@ export default function BigCard({article}) {
                 <h1 className ="votes-counter">{article.comment_count}</h1>
                 <h1 className ="icon">v</h1>
             </div>
-            <div className="comments">
+            <div className="card-comments">
+                <p>Test comment</p>
+                <p>Test comment</p>
+                <p>Test comment</p>
+                <p>Test comment</p>
                 <p>Test comment</p>
                 <p>Test comment</p>
                 <p>Test comment</p>
