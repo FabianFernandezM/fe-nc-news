@@ -119,6 +119,7 @@ body {
   align-self: center;
   }
 .card-title {grid-area: title; text-align: left; text-wrap:nowrap;}
+.big-card-title {grid-area: title; text-align: left; text-wrap:wrap;}
 .card-body {grid-area: body; text-align: left; overflow-y: auto;}
 .card-icons {
   display:flex;

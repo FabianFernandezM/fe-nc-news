@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
+import {useParams} from 'react-router-dom'
 import BigCard from "./BigCard"
 import "../App.css"
 
-export default function ArticleById({articleId}) { 
+export default function ArticleById() { 
+    const {article_id} = useParams()
 
     let [article, setArticle] = useState([])
     const [isLoading, setIsLoading] = useState(false)
@@ -11,9 +13,9 @@ export default function ArticleById({articleId}) {
     useEffect(()=>{
         setIsLoading(true)
 
-        fetch(`https://nc-news-78g8.onrender.com/api/articles/1`)
+        fetch(`https://nc-news-78g8.onrender.com/api/articles/${article_id}`)
         .then(response => response.json())
-        .then(data => {setArticle(data.article); console.log(data.article)})
+        .then(data => {setArticle(data.article)})
 
         setIsLoading(false)
     }, [])

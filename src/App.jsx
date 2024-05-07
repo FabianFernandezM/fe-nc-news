@@ -13,8 +13,8 @@ function App() {
     <div className="main-container">
       <Header/>
       <Routes>
-        {/* <Route path="/" element={<ArticlesList/>} /> */}
-        <Route path="/" element={<ArticleById/>} />
+        <Route path="/" element={<ArticlesList/>} />
+        <Route path="/articles/:article_id" element={<ArticleById/>} />
       </Routes>
       <Footer/>
     </div>
