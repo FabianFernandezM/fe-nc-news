@@ -7,7 +7,6 @@ export default function BigCard({article, comments}) {
 
     const [currVote, setCurrVote] = useState(0)
     const [counter, setCounter] = useState(article.votes)
-    const hasRenderFinished = useRef(false)
     const [loadingVotes, setLoadingVotes] = useState(false)
 
     const handleVote = (value) => {
@@ -19,10 +18,10 @@ export default function BigCard({article, comments}) {
         setLoadingVotes(true)
         if (article.length !== 0) 
         axios.patch(`https://nc-news-78g8.onrender.com/api/articles/${article.article_id}`, { inc_votes : currVote })
-        .then(()=>{
+        .then((data)=>{
             setLoadingVotes(false)
         })
-    }, [counter])
+    }, [currVote])
 
    return (
         <>

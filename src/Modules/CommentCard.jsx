@@ -3,6 +3,8 @@ import axios from 'axios';
 
 export default function CommentCard({comment}) {
 
+    console.log(comment)
+
     const date = new Date(comment.created_at)
     const datesliced = date.toString().slice(3, 21)
 
