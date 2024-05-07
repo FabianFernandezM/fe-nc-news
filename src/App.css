@@ -44,7 +44,7 @@ body {
 }
 
 .icon {
-  background-color: rgb(215, 62, 62);
+  background-color: #d73e3e;
   border-radius: 20px;
   margin:auto;
 }
@@ -110,6 +110,24 @@ body {
   height: auto;
 }
 
+.comment-card {
+  display: grid;
+  grid-template-columns: 75% 20%;
+  grid-template-areas:
+    'title icons'
+    'body body';
+  column-gap: 10px;
+  padding: 10px;
+  background: #d73e3e;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  scrollbar-width: none;
+  height: auto;
+}
+
 .card-image {
   grid-area: image;
   border-radius: 20px;
@@ -118,9 +136,23 @@ body {
   height: 90%;
   align-self: center;
   }
-.card-title {grid-area: title; text-align: left; text-wrap:nowrap;}
-.big-card-title {grid-area: title; text-align: left; text-wrap:wrap;}
-.card-body {grid-area: body; text-align: left; overflow-y: auto;}
+.card-title {
+  grid-area: title;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.big-card-title {
+  grid-area: title;
+  text-align: left;
+  text-wrap:wrap;
+}
+.card-body {
+  grid-area: body;
+  text-align: left;
+  overflow-y: auto;
+}
 .card-icons {
   display:flex;
   grid-area: icons;
