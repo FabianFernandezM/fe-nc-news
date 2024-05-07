@@ -6,8 +6,8 @@ import "../App.css"
 export default function ArticleById() { 
     const {article_id} = useParams()
 
-    let [article, setArticle] = useState([])
-    let [comments, setComments] = useState([])
+    const [article, setArticle] = useState([])
+    const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState("")
 

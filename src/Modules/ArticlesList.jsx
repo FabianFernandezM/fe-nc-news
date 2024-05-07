@@ -4,7 +4,7 @@ import "../App.css"
 
 export default function ArticlesList() { 
 
-    let [articlesList, setArticlesList] = useState([])
+    const [articlesList, setArticlesList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState("")
 
