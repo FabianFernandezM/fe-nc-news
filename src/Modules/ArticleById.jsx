@@ -6,7 +6,8 @@ import "../App.css"
 export default function ArticleById() { 
     const {article_id} = useParams()
 
-    let [article, setArticle] = useState([])
+    const [article, setArticle] = useState([])
+    const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState("")
 
@@ -17,6 +18,10 @@ export default function ArticleById() {
         .then(response => response.json())
         .then(data => {setArticle(data.article)})
 
+        fetch(`https://nc-news-78g8.onrender.com/api/articles/${article_id}/comments`)
+        .then(response => response.json())
+        .then(data => {setComments(data.comments)})
+
         setIsLoading(false)
     }, [])
 
@@ -24,7 +29,7 @@ export default function ArticleById() {
 
     else return (
         <div className="list-container">
-            <BigCard article={article}/>
+            <BigCard article={article} comments={comments}/>
         </div>
     )
 }

@@ -1,4 +1,6 @@
-export default function BigCard({article}) {
+import CommentCard from "./CommentCard"
+
+export default function BigCard({article, comments}) {
 
    return (
         <>
@@ -12,19 +14,9 @@ export default function BigCard({article}) {
                 <h1 className ="icon">v</h1>
             </div>
             <div className="card-comments">
-                <p>Test comment</p>
-                <p>Test comment</p>
-                <p>Test comment</p>
-                <p>Test comment</p>
-                <p>Test comment</p>
-                <p>Test comment</p>
-                <p>Test comment</p>
-                <p>Test comment</p>
-                <p>Test comment</p>
-                <p>Test comment</p>
-                <p>Test comment</p>
-                <p>Test comment</p>
-                <p>Test comment</p>
+                {comments.map((comment) => {
+                    return <CommentCard comment={comment}/>
+                })}
             </div>
         </div>
         </>
