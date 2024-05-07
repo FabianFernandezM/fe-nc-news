@@ -17,12 +17,11 @@ export default function ArticleById() {
         fetch(`https://nc-news-78g8.onrender.com/api/articles/${article_id}`)
         .then(response => response.json())
         .then(data => {setArticle(data.article)})
+        .then(setIsLoading(false))
 
         fetch(`https://nc-news-78g8.onrender.com/api/articles/${article_id}/comments`)
         .then(response => response.json())
         .then(data => {setComments(data.comments)})
-
-        setIsLoading(false)
     }, [])
 
     if (isLoading === 0) return <h1>Loading...</h1>

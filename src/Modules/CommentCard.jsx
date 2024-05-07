@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import Axios from 'axios';
+import axios from 'axios';
 
 export default function CommentCard({comment}) {
 
@@ -7,13 +7,21 @@ export default function CommentCard({comment}) {
     const datesliced = date.toString().slice(3, 21)
 
     const [counter, setCounter] = useState(comment.votes)
+    const [loadingVotes, setLoadingVotes] = useState(false)
     const [currVote, setCurrVote] = useState(0)
 
     const handleVote = (value) => {
-        Axios.patch(`https://nc-news-78g8.onrender.com/api/comments/${comment.comment_id}`, { inc_votes : value })
         setCurrVote(currVote+value)
         setCounter(counter+value)
     }
+
+    useEffect(()=> {
+        setLoadingVotes(true)
+        axios.patch(`https://nc-news-78g8.onrender.com/api/comments/${comment.comment_id}`, { inc_votes : currVote })
+        .then(()=>{
+            setLoadingVotes(false)
+        })
+    }, [currVote])
 
     return (
         <>
@@ -22,14 +30,10 @@ export default function CommentCard({comment}) {
                 <p className="card-body">{comment.body}</p>
                 <div className="card-icons">
                     <button className ="icon"  disabled={currVote===1} onClick={() => handleVote(1)}>^</button>
-                    <h3 className ="votes-counter">{counter}</h3>
+                    {loadingVotes ? <h3 className ="votes-counter">...</h3> : <h3 className ="votes-counter">{counter}</h3>}
                     <button className ="icon" disabled={currVote===-1} onClick={() => handleVote(-1)}>v</button>
                 </div>
             </div>
         </>
     )
-}
-
-function VoteByComment(comment_id, value) {
-    Axios.patch(`https://nc-news-78g8.onrender.com/api/comments/${comment_id}`, { inc_votes : value })
 }
