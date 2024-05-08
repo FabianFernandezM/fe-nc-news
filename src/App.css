@@ -17,6 +17,10 @@ body {
   background: rgb(255, 119, 119);
 }
 
+input[type="text"], textarea {
+  background-color : #d73e3e; 
+}
+
 .main-container {
   display:flex;
   flex-direction: column;
@@ -95,7 +99,7 @@ body {
     'image image'
     'title title'
     'body body'
-    'icons icons'
+    'icons comment-button'
     'comments comments';
   column-gap: 10px;
   padding: 10px;
@@ -108,6 +112,53 @@ body {
   margin-bottom: 20px;
   scrollbar-width: none;
   height: auto;
+}
+
+.comment-form {
+  display: grid;
+  grid-template-columns: 12% 68% 15%;
+  grid-template-areas:
+    'label-body body button';
+  column-gap: 10px;
+  row-gap: 10px;
+  padding: 10px;
+  background: #d73e3e;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  scrollbar-width: none;
+  height: auto;
+}
+.comment-form > input[type="text"], textarea {
+  border-radius: 10px;
+  background-color : #fc4b4b;
+}
+.label-title {
+  grid-area: label-title;
+}
+.comment-title {
+  grid-area: title;
+}
+.comment-body {
+  grid-area: body;
+  background: #fc4b4b;
+  height: 4rem;
+  max-width: 99%;
+  min-width: 99%;
+  min-height: 4rem;
+  max-height: 10rem;
+}
+.label-body {
+  grid-area: label-body;
+}
+.comment-button {
+  grid-area: button;
+  background: #fc4b4b;
+  height: 4rem;
+  align-self: center;
 }
 
 .comment-card {
@@ -152,6 +203,12 @@ body {
   text-align: left;
   text-wrap:wrap;
 }
+.big-card-comment-button {
+  grid-area: comment-button;
+  width:50%;
+  justify-self: right;
+  background-color: #d73e3e;
+}
 .card-body {
   grid-area: body;
   text-align: left;
@@ -164,6 +221,7 @@ body {
 .card-comments {
   height: fit-content;
   grid-area: comments;
+  margin-top: 10px;
 }
 
 *::-webkit-scrollbar{
