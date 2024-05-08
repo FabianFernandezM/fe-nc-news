@@ -46,7 +46,7 @@ export default function BigCard({article, comments, setComments, updatePage, set
             <div className="card-comments">
                 {showCommentForm ? <CommentForm article_id={article.article_id}comments={comments} setComments={setComments} updatePage={updatePage} setUpdatePage={setUpdatePage}/> : null}
                 {comments.map((comment) => {
-                    return <CommentCard key={comment.comment_id} comment={comment}/>
+                    return <CommentCard key={comment.comment_id} comment={comment} updatePage={updatePage} setUpdatePage={setUpdatePage}/>
                 })}
             </div>
         </div>

@@ -1,26 +1,38 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import axios from 'axios';
+import { UserContext } from '../Contexts/User'
 
-export default function CommentCard({comment}) {
+export default function CommentCard({comment, updatePage, setUpdatePage}) {
+    const {user} = useContext(UserContext)
     const date = new Date(comment.created_at)
     const datesliced = date.toString().slice(3, 21)
 
-    const [patchValue, setPatchValue] = useState(0)
     const [loadingVotes, setLoadingVotes] = useState(false)
+    const [deletingComment, setDeletingComment] = useState(false)
     const [currVote, setCurrVote] = useState(0)
 
     const handleVote = (value) => {
-        setPatchValue(value)
         setCurrVote(currVote+value)
-    }
-
-    useEffect(()=> {
         setLoadingVotes(true)
-        axios.patch(`https://nc-news-78g8.onrender.com/api/comments/${comment.comment_id}`, { inc_votes : patchValue })
+        axios.patch(`https://nc-news-78g8.onrender.com/api/comments/${comment.comment_id}`, { inc_votes : value })
         .then(()=>{
             setLoadingVotes(false)
         })
-    }, [currVote])
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+        setDeletingComment(true)
+        axios.delete(`https://nc-news-78g8.onrender.com/api/comments/${comment.comment_id}`)
+        .then(()=>{
+            setUpdatePage(!updatePage)
+        })
+        .then(()=>{
+            setDeletingComment(false)
+        })
+    }
+
+    if (deletingComment) return <h2>Deleting comment...</h2>
 
     return (
         <>
@@ -28,9 +40,10 @@ export default function CommentCard({comment}) {
                 <h3 className="card-title">{comment.author} - {datesliced}</h3>
                 <p className="card-body">{comment.body}</p>
                 <div className="card-icons">
-                    <button className ="icon"  disabled={currVote===1} onClick={() => handleVote(1)}>^</button>
+                {user === comment.author ? null : <button className ="icon"  disabled={currVote===1} onClick={() => handleVote(1)}>^</button>}
                     {loadingVotes ? <h3 className ="votes-counter">...</h3> : <h3 className ="votes-counter">{comment.votes+currVote}</h3>}
-                    <button className ="icon" disabled={currVote===-1} onClick={() => handleVote(-1)}>v</button>
+                    {user === comment.author ? null : <button className ="icon" disabled={currVote===-1} onClick={() => handleVote(-1)}>v</button>}
+                    {user === comment.author ? <button className ="icon" onClick={handleDelete}>Delete</button> : null}
                 </div>
             </div>
         </>

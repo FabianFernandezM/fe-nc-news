@@ -154,18 +154,13 @@ input[type="text"], textarea {
 .label-body {
   grid-area: label-body;
 }
-.comment-button {
-  grid-area: button;
-  background: #fc4b4b;
-  height: 4rem;
-  align-self: center;
-}
 
 .comment-card {
   display: grid;
-  grid-template-columns: 60% 35%;
+  grid-template-columns: 65% 30%;
   grid-template-areas:
     'title icons'
+    'title delete'
     'body body';
   column-gap: 10px;
   padding: 10px;
@@ -181,6 +176,13 @@ input[type="text"], textarea {
 }
 .comment-card > .card-icons > button{
   background-color: #fc4b4b;
+}
+.comment-delete-button {
+  grid-area: delete !important;
+  background-color: #fc4b4b;
+  width: fit-content;
+  align-self: center;
+  justify-self: center;
 }
 
 .card-image {
@@ -217,6 +219,8 @@ input[type="text"], textarea {
 .card-icons {
   display:flex;
   grid-area: icons;
+  align-content: right;
+  justify-content: right;
 }
 .card-comments {
   height: fit-content;
