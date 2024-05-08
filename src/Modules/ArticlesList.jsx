@@ -14,8 +14,7 @@ export default function ArticlesList() {
         fetch("https://nc-news-78g8.onrender.com/api/articles")
         .then(response => response.json())
         .then(data => setArticlesList(data.articles))
-
-        setIsLoading(false)
+        .then(()=> setIsLoading(false))
     }, [])
 
     if (articlesList.length === 0) return <h1>Loading...</h1>
@@ -23,7 +22,7 @@ export default function ArticlesList() {
     else return (
         <div className="list-container">
          {articlesList.map(article => {
-            return <SmallCard article={article}/>
+            return <SmallCard key={article.article_id} article={article}/>
          })}
         </div>
     )
