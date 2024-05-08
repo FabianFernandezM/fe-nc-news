@@ -9,6 +9,7 @@ export default function ArticleById() {
     const [article, setArticle] = useState([])
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const [updatePage, setUpdatePage] = useState(false)
     const [isError, setIsError] = useState("")
 
     useEffect(()=>{
@@ -22,14 +23,13 @@ export default function ArticleById() {
         fetch(`https://nc-news-78g8.onrender.com/api/articles/${article_id}/comments`)
         .then(response => response.json())
         .then(data => {setComments(data.comments)})
-    }, [])
+    }, [updatePage])
 
     if (isLoading) return <h1>Loading...</h1>
 
     else return (
         <div className="list-container">
-            {console.log(article)}
-            <BigCard article={article} comments={comments}/>
+            <BigCard article={article} comments={comments} setComments={setComments} updatePage={updatePage} setUpdatePage={setUpdatePage}/>
         </div>
     )
 }
