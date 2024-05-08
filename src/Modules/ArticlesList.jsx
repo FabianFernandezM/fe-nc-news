@@ -41,7 +41,7 @@ export default function ArticlesList() {
 
     else return (
         <>
-            <label for="topics"><h2>Topic:</h2></label>
+            <label htmlFor="topics"><h2>Topic:</h2></label>
             <select name="topic" id="topic" onChange={handleTopic}>
                 <option value="">Select a topic...</option>
                 <option value="cooking">Cooking</option>
