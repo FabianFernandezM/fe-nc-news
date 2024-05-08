@@ -47,6 +47,22 @@ input[type="text"], textarea {
   }
 }
 
+.query-bar {
+  display:flex;
+  flex-direction: row;
+  width: 80%;
+  align-self: center;
+  align-items: center;
+  justify-content: space-around;
+  background: #fc4b4b;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.query-dropdown {
+  width: 15%;
+}
+
 .icon {
   background-color: #d73e3e;
   border-radius: 20px;
