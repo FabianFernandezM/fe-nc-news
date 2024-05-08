@@ -7,13 +7,11 @@ export default function BigCard({article, comments}) {
 
     const [patchValue, setPatchValue] = useState(0)
     const [currVote, setCurrVote] = useState(0)
-    const [counter, setCounter] = useState(article.votes)
     const [loadingVotes, setLoadingVotes] = useState(false)
 
     const handleVote = (value) => {
         setPatchValue(value)
         setCurrVote(currVote+value)
-        setCounter(counter+value)
     }
 
     useEffect(()=> {
@@ -23,7 +21,7 @@ export default function BigCard({article, comments}) {
         .then((data)=>{
             setLoadingVotes(false)
         })
-    }, [counter])
+    }, [currVote])
 
    return (
         <>
@@ -33,7 +31,7 @@ export default function BigCard({article, comments}) {
             <p className="card-body">{article.body}</p>
             <div className="card-icons">
                 <button className ="icon"  disabled={currVote===1} onClick={() => handleVote(1)}>^</button>
-                {loadingVotes ? <h2 className ="votes-counter">...</h2> : <h2 className ="votes-counter">{counter}</h2>}
+                {loadingVotes ? <h2 className ="votes-counter">...</h2> : <h2 className ="votes-counter">{article.votes+currVote}</h2>}
                 <button className ="icon"  disabled={currVote===-1} onClick={() => handleVote(-1)}>v</button>
             </div>
             <div className="card-comments">

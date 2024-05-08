@@ -6,14 +6,12 @@ export default function CommentCard({comment}) {
     const datesliced = date.toString().slice(3, 21)
 
     const [patchValue, setPatchValue] = useState(0)
-    const [counter, setCounter] = useState(comment.votes)
     const [loadingVotes, setLoadingVotes] = useState(false)
     const [currVote, setCurrVote] = useState(0)
 
     const handleVote = (value) => {
         setPatchValue(value)
         setCurrVote(currVote+value)
-        setCounter(counter+value)
     }
 
     useEffect(()=> {
@@ -31,7 +29,7 @@ export default function CommentCard({comment}) {
                 <p className="card-body">{comment.body}</p>
                 <div className="card-icons">
                     <button className ="icon"  disabled={currVote===1} onClick={() => handleVote(1)}>^</button>
-                    {loadingVotes ? <h3 className ="votes-counter">...</h3> : <h3 className ="votes-counter">{counter}</h3>}
+                    {loadingVotes ? <h3 className ="votes-counter">...</h3> : <h3 className ="votes-counter">{comment.votes+currVote}</h3>}
                     <button className ="icon" disabled={currVote===-1} onClick={() => handleVote(-1)}>v</button>
                 </div>
             </div>
