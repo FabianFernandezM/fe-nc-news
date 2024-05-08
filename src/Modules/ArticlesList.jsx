@@ -78,7 +78,7 @@ export default function ArticlesList() {
                 <label htmlFor="sort-by"><h3>Sort by:</h3></label>
                 <select name="sort-by" id="sort-by" className="query-dropdown" onChange={handleSortBy}>
                     <option value="created_at">Date</option>
-                    {/* <option value="comment_count">Comment Count</option> Commented due to DB issue */}
+                    <option value="comment_count">Comment Count</option> Commented due to DB issue
                     <option value="votes">Votes</option>
                 </select>
                 <label htmlFor="order"><h3>Order:</h3></label>
