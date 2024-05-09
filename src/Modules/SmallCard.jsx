@@ -18,14 +18,9 @@ export default function SmallCard({article}) {
                 <p>Posted by: {article.author}</p>
                 <p>{datesliced}</p>
                 <p>Topic: {article.topic}</p>
-                <h4>{article.comment_count} comments</h4>
+                <h4>{article.comment_count} comments ◈ {article.votes} votes</h4>
             </div>
             </Link>
-            <div className="card-icons">
-                <h2 className ="icon icon-upvote"></h2>
-                <h2 className ="votes-counter">{article.votes}</h2>
-                <h2 className ="icon icon-downvote"></h2>
-            </div>
         </div>
         </>
     )

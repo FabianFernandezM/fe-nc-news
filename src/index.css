@@ -53,6 +53,11 @@ button:disabled {
   background-color: #000000af;
 }
 
+select {
+  border-radius: 10px;
+  background-color: #d73e3e;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

@@ -68,23 +68,6 @@ input[type="text"], textarea {
   }
 }
 
-.search-button {
-  background-image: url("../resources/Images/SearchButton.png");
-  background-size:cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 50%;
-  align-self: center;
-  width: 3rem;
-  height: 3rem;
-  transition: 0.2s;
-  transform: scale(0.8);
-}
-.search-button:hover {
-  transform: scale(1);
-  border-color: #ffffff00;
-}
-
 .query-bar {
   display:flex;
   flex-direction: row;
@@ -123,24 +106,49 @@ input[type="text"], textarea {
   width: 3rem;
   height: 3rem;
   transition: 0.2s;
-  transform: scale(0.8);
   border-radius: 20px;
   margin:auto;
+  background-size: 70%;
+  transform: scale(0.6);
+}
+.icon:hover {
+  transform: scale(0.8);
+  border-color: #ffffff00;
+}
+
+.icon-home:hover, .icon-user:hover, .icon-search:hover, .icon-post:hover{
+  transform: scale(1);
+}
+.icon-search {
+  background-image: url("../resources/Images/SearchButton.png");
+  background-size:cover;
+  transform: scale(0.8);
+}
+.icon-home {
+  background-image: url("../resources/Images/home-icon.png");
+  transform: scale(0.8);
+}
+.icon-user {
+  background-image: url("../resources/Images/user-icon.png");
+  transform: scale(0.8);
+}
+.icon-post {
+  background-image: url("../resources/Images/post-icon.png");
+  transform: scale(0.8);
 }
 .icon-upvote {
   background-image: url("../resources/Images/arrow-up.png");
-  background-size: 70%;
-  transform: scale(0.6);
 }
 .icon-downvote {
   background-image: url("../resources/Images/arrow-up.png");
-  background-size: 70%;
   transform: scale(-0.6);
+}
+.icon-downvote:hover {
+  transform: scale(-0.8);
+  border-color: #ffffff00;
 }
 .icon-delete-comment {
   background-image: url("../resources/Images/close-icon.png");
-  background-size: 70%;
-  transform: scale(0.6);
 }
 .icon-empty {
   width: 3.7rem;
@@ -193,11 +201,10 @@ input[type="text"], textarea {
 .card-small {
   display: grid;
   grid-template-columns: 30% 65%;
-  grid-template-rows: 5vh 10vh 5vh;
+  grid-template-rows: 5vh 10vh;
   grid-template-areas:
     'image title'
-    'image body'
-    'image icons';
+    'image body';
   column-gap: 10px;
   padding: 10px;
   border-radius: 20px;
@@ -206,6 +213,8 @@ input[type="text"], textarea {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
+  margin-bottom: 20px;
+  align-items: center;
   overflow:clip;
 
   @media (max-height: 600px) {

@@ -19,9 +19,8 @@ export default function Header({showSearch, setShowSearch}) {
     return (
         <>
             <div className="header">
-                <Link to={`/`} className="icon"><h2>Home</h2></Link>
-                <button class="search-button" onClick={handleShowSearch}><h2></h2></button>
-                <Link to={`/`} className="icon"><h2>{user}</h2></Link>
+                <a className="icon icon-search" onClick={handleShowSearch}><h2></h2></a>
+                <Link to={`/`} className="icon icon-user"><h2></h2></Link>
             </div>
         </>
     )
