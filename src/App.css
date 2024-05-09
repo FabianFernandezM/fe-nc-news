@@ -84,6 +84,35 @@ input[type="text"], textarea {
   overflow: auto;
 }
 
+.error-card {
+  display: flex;
+  flex-direction: column;
+  column-gap: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  background: #fc4b4b;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  scrollbar-width: none;
+  height: auto;
+}
+
+.error-card > .icon {
+  height: 50px;
+  width: 100px;
+  text-align: center;
+  text-justify: center;
+}
+
+.error-card > img {
+  width: 80%;
+  align-self: center;
+  justify-self: center;
+}
+
 .card-small {
   display: grid;
   grid-template-columns: 30% 65%;

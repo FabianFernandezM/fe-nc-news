@@ -2,6 +2,7 @@ import CommentCard from "./CommentCard"
 import { useEffect, useState, useRef } from "react"
 import axios from 'axios';
 import CommentForm from "./CommentForm";
+import ErrorPage from "./ErrorPage"
 
 
 export default function BigCard({article, comments, setComments, updatePage, setUpdatePage}) {
@@ -10,6 +11,7 @@ export default function BigCard({article, comments, setComments, updatePage, set
     const [currVote, setCurrVote] = useState(0)
     const [loadingVotes, setLoadingVotes] = useState(false)
     const [showCommentForm, setShowCommentForm] = useState(false)
+    const [error, setError] = useState(null)
 
     const handleVote = (value) => {
         setPatchValue(value)
@@ -27,11 +29,16 @@ export default function BigCard({article, comments, setComments, updatePage, set
             .then((data)=>{
                 setLoadingVotes(false)
             })
+            .catch((error)=>{
+                setError({code: error.response.status, message: error.response.data.message})
+            })
         }
         
     }, [currVote])
 
-   return (
+    if (error) return <ErrorPage error={error}/>
+
+    return (
         <>
         <div className="card-big">
             <img className="card-image" src={article.article_img_url} alt="Post image" />

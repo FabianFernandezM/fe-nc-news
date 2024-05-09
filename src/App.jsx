@@ -5,6 +5,7 @@ import Footer from "./Modules/Footer"
 import './App.css'
 import ArticlesList from './Modules/ArticlesList'
 import ArticleById from './Modules/ArticleById'
+import ErrorPage from './Modules/ErrorPage'
 import { UserProvider } from './Contexts/User'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<ArticlesList/>} />
           <Route path="/articles" element={<ArticlesList/>} />
           <Route path="/articles/:article_id" element={<ArticleById/>} />
+          <Route path="*" element={<ErrorPage/>} />
         </Routes>
         <Footer/>
       </div>

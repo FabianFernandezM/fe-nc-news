@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
-import {useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import BigCard from "./BigCard"
+import ErrorPage from "./ErrorPage"
 import "../App.css"
+import axios from "axios"
 
 export default function ArticleById() { 
     const {article_id} = useParams()
@@ -10,24 +12,29 @@ export default function ArticleById() {
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [updatePage, setUpdatePage] = useState(false)
-    const [isError, setIsError] = useState("")
+    const [error, setError] = useState(null)
 
     useEffect(()=>{
         setIsLoading(true)
 
-        fetch(`https://nc-news-78g8.onrender.com/api/articles/${article_id}`)
-        .then(response => response.json())
-        .then(data => {setArticle(data.article)})
+        axios.get(`https://nc-news-78g8.onrender.com/api/articles/${article_id}`)
+        .then(data => {setArticle(data.data.article)})
         .then(() => setIsLoading(false))
+        .catch((error)=>{
+            setError({code: error.response.status, message: error.response.data.message})
+        })
 
-        fetch(`https://nc-news-78g8.onrender.com/api/articles/${article_id}/comments`)
-        .then(response => response.json())
-        .then(data => {setComments(data.comments)})
+        axios.get(`https://nc-news-78g8.onrender.com/api/articles/${article_id}/comments`)
+        .then(data => {setComments(data.data.comments)})
+        .then(() => setIsLoading(false))
+        .catch((error)=>{
+            setError({code: error.response.status, message: error.response.data.message})
+        })
     }, [updatePage])
 
+    if (error) return <ErrorPage error={error}/>
     if (isLoading) return <h1>Loading...</h1>
-
-    else return (
+    return (
         <div className="list-container">
             <BigCard article={article} comments={comments} setComments={setComments} updatePage={updatePage} setUpdatePage={setUpdatePage}/>
         </div>

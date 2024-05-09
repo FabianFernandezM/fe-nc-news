@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react"
 import axios from 'axios';
 import { UserContext } from '../Contexts/User'
+import ErrorPage from "./ErrorPage"
 
 export default function CommentCard({comment, updatePage, setUpdatePage}) {
     const {user} = useContext(UserContext)
@@ -10,6 +11,7 @@ export default function CommentCard({comment, updatePage, setUpdatePage}) {
     const [loadingVotes, setLoadingVotes] = useState(false)
     const [deletingComment, setDeletingComment] = useState(false)
     const [currVote, setCurrVote] = useState(0)
+    const [error, setError] = useState(null)
 
     const handleVote = (value) => {
         setCurrVote(currVote+value)
@@ -17,6 +19,9 @@ export default function CommentCard({comment, updatePage, setUpdatePage}) {
         axios.patch(`https://nc-news-78g8.onrender.com/api/comments/${comment.comment_id}`, { inc_votes : value })
         .then(()=>{
             setLoadingVotes(false)
+        })
+        .catch((error)=>{
+            setError({code: error.response.status, message: error.response.data.message})
         })
     }
 
@@ -30,8 +35,12 @@ export default function CommentCard({comment, updatePage, setUpdatePage}) {
         .then(()=>{
             setDeletingComment(false)
         })
+        .catch((error)=>{
+            setError({code: error.response.status, message: error.response.data.message})
+        })
     }
-
+    
+    if (error) return <ErrorPage error={error}/>
     if (deletingComment) return <h2>Deleting comment...</h2>
 
     return (
