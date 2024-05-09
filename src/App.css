@@ -116,8 +116,34 @@ input[type="text"], textarea {
 
 .icon {
   background-color: #d73e3e;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  align-self: center;
+  width: 3rem;
+  height: 3rem;
+  transition: 0.2s;
+  transform: scale(0.8);
   border-radius: 20px;
   margin:auto;
+}
+.icon-upvote {
+  background-image: url("../resources/Images/arrow-up.png");
+  background-size: 70%;
+  transform: scale(0.6);
+}
+.icon-downvote {
+  background-image: url("../resources/Images/arrow-up.png");
+  background-size: 70%;
+  transform: scale(-0.6);
+}
+.icon-delete-comment {
+  background-image: url("../resources/Images/close-icon.png");
+  background-size: 70%;
+  transform: scale(0.6);
+}
+.icon-empty {
+  width: 3.7rem;
 }
 
 .votes-counter {
@@ -286,12 +312,15 @@ input[type="text"], textarea {
 .comment-card > .card-icons > button{
   background-color: #fc4b4b;
 }
+.comment-card > .card-icons > button:disabled {
+  background-color: #000000af;
+}
 .comment-delete-button {
-  grid-area: delete !important;
+  grid-area: delete;
   background-color: #fc4b4b;
   width: fit-content;
-  align-self: center;
-  justify-self: center;
+  align-self: right;
+  justify-self: right;
 }
 
 .card-image-container {

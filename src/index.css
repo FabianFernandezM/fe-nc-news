@@ -49,6 +49,9 @@ button {
 button:hover {
   border-color: #ffffff;
 }
+button:disabled {
+  background-color: #000000af;
+}
 
 @media (prefers-color-scheme: light) {
   :root {

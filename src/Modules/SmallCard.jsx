@@ -22,9 +22,9 @@ export default function SmallCard({article}) {
             </div>
             </Link>
             <div className="card-icons">
-                <h2 className ="icon">^</h2>
+                <h2 className ="icon icon-upvote"></h2>
                 <h2 className ="votes-counter">{article.votes}</h2>
-                <h2 className ="icon">v</h2>
+                <h2 className ="icon icon-downvote"></h2>
             </div>
         </div>
         </>
