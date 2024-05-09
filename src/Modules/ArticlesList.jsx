@@ -5,7 +5,7 @@ import ErrorPage from "./ErrorPage"
 import "../App.css"
 import axios from "axios"
 
-export default function ArticlesList() { 
+export default function ArticlesList({showSearch}) { 
 
     const [searchParams, setSearchParams] = useSearchParams();
     const [topicQuery, setTopicQuery] = useState(searchParams.get("topic") || "");
@@ -70,6 +70,7 @@ export default function ArticlesList() {
 
     else return (
         <>  
+            {showSearch ? 
             <div className="query-bar">
                 <label htmlFor="topics"><h3>Topic:</h3></label>
                 <select name="topic" id="topic" className="query-dropdown" onChange={handleTopic}>
@@ -89,7 +90,7 @@ export default function ArticlesList() {
                     <option value="asc">Ascending</option>
                     <option value="desc">Descending</option>
                 </select>
-            </div>
+            </div> : null}
 
             <script type="text/javascript">document.getElementById("topic").namedItem({topicQuery}).selected=true</script>
 

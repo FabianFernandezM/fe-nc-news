@@ -10,14 +10,15 @@ import { UserProvider } from './Contexts/User'
 
 function App() {
   const [inLogin, setInLogin] = useState(false)
+  const [showSearch, setShowSearch] = useState(false)
 
   return (
     <UserProvider>
       <div className="main-container">
-        <Header/>
+        <Header showSearch={showSearch} setShowSearch={setShowSearch}/>
         <Routes>
-          <Route path="/" element={<ArticlesList/>} />
-          <Route path="/articles" element={<ArticlesList/>} />
+          <Route path="/" element={<ArticlesList showSearch={showSearch}/>} />
+          <Route path="/articles" element={<ArticlesList showSearch={showSearch}/>} />
           <Route path="/articles/:article_id" element={<ArticleById/>} />
           <Route path="*" element={<ErrorPage/>} />
         </Routes>
