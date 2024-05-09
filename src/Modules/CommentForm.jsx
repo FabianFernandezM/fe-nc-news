@@ -1,11 +1,13 @@
 import axios from "axios"
 import { useState, useContext } from "react"
 import { UserContext } from '../Contexts/User'
+import ErrorPage from "./ErrorPage"
 
 export default function CommentForm ({article_id, comments, setComments, updatePage, setUpdatePage}) {
     const [body, setBody] = useState("")
     const [loadingComment, setLoadingComment] = useState(false)
     const {user} = useContext(UserContext)
+    const [error, setError] = useState(null)
 
     const handleBody = (e) => {
         setBody(e.target.value)
@@ -22,8 +24,12 @@ export default function CommentForm ({article_id, comments, setComments, updateP
         .then(()=>{
             setLoadingComment(false)
         })
+        .catch((error)=>{
+            setError({code: error.response.status, message: error.response.data.message})
+        })
     }
 
+    if (error) return <ErrorPage error={error}/>
     if (loadingComment) return <h2>Posting comment...</h2>
 
     return (

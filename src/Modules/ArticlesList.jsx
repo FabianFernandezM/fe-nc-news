@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import {useNavigate, useSearchParams} from 'react-router-dom'
 import SmallCard from "./SmallCard"
+import ErrorPage from "./ErrorPage"
 import "../App.css"
+import axios from "axios"
 
 export default function ArticlesList() { 
 
@@ -13,7 +15,7 @@ export default function ArticlesList() {
 
     const [articlesList, setArticlesList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-    const [isError, setIsError] = useState("")
+    const [error, setError] = useState(null)
 
     const handleTopic = (e) => {
         setTopicQuery(e.target.value)
@@ -53,17 +55,18 @@ export default function ArticlesList() {
             urlString += `order=${orderQuery}`
         }
 
-        console.log(urlString)
 
 
-
-        fetch(urlString)
-        .then(response => response.json())
-        .then(data => setArticlesList(data.articles))
+        axios.get(urlString)
+        .then(data => setArticlesList(data.data.articles))
         .then(()=> setIsLoading(false))
+        .catch((error)=>{
+            setError({code: error.response.status, message: error.response.data.message})
+        })
     }, [topicQuery, sortByQuery, orderQuery])
 
-    if (articlesList.length === 0) return <h1>Loading...</h1>
+    if (error) return <ErrorPage error={error}/>
+    if (isLoading) return <h1>Loading...</h1>
 
     else return (
         <>  
