@@ -49,10 +49,10 @@ export default function CommentCard({comment, updatePage, setUpdatePage}) {
                 <h3 className="card-title">{comment.author} - {datesliced}</h3>
                 <p className="card-body">{comment.body}</p>
                 <div className="card-icons">
-                {user === comment.author ? null : <button className ="icon"  disabled={currVote===1} onClick={() => handleVote(1)}>^</button>}
+                    {user === comment.author ?  <a className ="icon-empty" /> : <button className ="icon icon-upvote"  disabled={currVote===1} onClick={() => handleVote(1)}></button>}
                     {loadingVotes ? <h3 className ="votes-counter">...</h3> : <h3 className ="votes-counter">{comment.votes+currVote}</h3>}
-                    {user === comment.author ? null : <button className ="icon" disabled={currVote===-1} onClick={() => handleVote(-1)}>v</button>}
-                    {user === comment.author ? <button className ="icon" onClick={handleDelete}>Delete</button> : null}
+                    {user === comment.author ? null : <button className ="icon icon-downvote" disabled={currVote===-1} onClick={() => handleVote(-1)}></button>}
+                    {user === comment.author ? <button className ="icon icon-delete-comment" onClick={handleDelete}></button> : null}
                 </div>
             </div>
         </>

@@ -7,8 +7,18 @@
   }
 }
 
+textarea {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.5vh;
+}
+textarea::placeholder {
+  color: #ffffff;
+}
+
+
 * {
   border: blue 0px solid;
+  scrollbar-width: none;
 }
 
 body {
@@ -42,8 +52,19 @@ input[type="text"], textarea {
   height: 10%;
   border-bottom: black 5px dotted;
   background: #fc4b4b;
+  z-index: 1;
   @media (max-height: 600px) {
     height: 60px;
+  }
+  animation: 1s headerSlideIn;
+}
+@keyframes headerSlideIn {
+  from {
+    transform: translate(0px, -100px);
+  }
+
+  to {
+    transform: translate(0px, 0px);
   }
 }
 
@@ -57,6 +78,19 @@ input[type="text"], textarea {
   background: #fc4b4b;
   border-radius: 20px;
   margin-top: 10px;
+  animation: 1s slidein;
+}
+
+@keyframes slidein {
+  from {
+    transform: scaleY(0);
+    transform: translate(0px, -75px);
+  }
+
+  to {
+    transform: scaleY(1);
+    transform: translate(0px, 0px);
+  }
 }
 
 .query-dropdown {
@@ -65,8 +99,59 @@ input[type="text"], textarea {
 
 .icon {
   background-color: #d73e3e;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  align-self: center;
+  width: 3rem;
+  height: 3rem;
+  transition: 0.2s;
   border-radius: 20px;
   margin:auto;
+  background-size: 70%;
+  transform: scale(0.6);
+}
+.icon:hover {
+  transform: scale(0.8);
+  border-color: #ffffff00;
+}
+
+.icon-home:hover, .icon-user:hover, .icon-search:hover, .icon-post:hover{
+  transform: scale(1);
+}
+.icon-search {
+  background-image: url("../resources/Images/SearchButton.png");
+  background-size:cover;
+  transform: scale(0.8);
+}
+.icon-home {
+  background-image: url("../resources/Images/home-icon.png");
+  transform: scale(0.8);
+}
+.icon-user {
+  background-image: url("../resources/Images/user-icon.png");
+  transform: scale(0.8);
+}
+.icon-post {
+  background-image: url("../resources/Images/post-icon.png");
+  transform: scale(0.8);
+}
+.icon-upvote {
+  background-image: url("../resources/Images/arrow-up.png");
+}
+.icon-downvote {
+  background-image: url("../resources/Images/arrow-up.png");
+  transform: scale(-0.6);
+}
+.icon-downvote:hover {
+  transform: scale(-0.8);
+  border-color: #ffffff00;
+}
+.icon-delete-comment {
+  background-image: url("../resources/Images/close-icon.png");
+}
+.icon-empty {
+  width: 3.7rem;
 }
 
 .votes-counter {
@@ -116,11 +201,10 @@ input[type="text"], textarea {
 .card-small {
   display: grid;
   grid-template-columns: 30% 65%;
-  grid-template-rows: 5vh 15vh 5vh;
+  grid-template-rows: 5vh 10vh;
   grid-template-areas:
     'image title'
-    'image body'
-    'image icons';
+    'image body';
   column-gap: 10px;
   padding: 10px;
   border-radius: 20px;
@@ -129,11 +213,12 @@ input[type="text"], textarea {
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
+  margin-bottom: 20px;
+  align-items: center;
   overflow:clip;
 
   @media (max-height: 600px) {
     height: 150px;
-
   }
 }
 
@@ -157,13 +242,15 @@ input[type="text"], textarea {
   margin-bottom: 20px;
   scrollbar-width: none;
   height: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .comment-form {
   display: grid;
-  grid-template-columns: 12% 68% 15%;
+  grid-template-columns: 80% 15%;
   grid-template-areas:
-    'label-body body button';
+    'body button';
   column-gap: 10px;
   row-gap: 10px;
   padding: 10px;
@@ -176,11 +263,23 @@ input[type="text"], textarea {
   border-radius: 20px;
   scrollbar-width: none;
   height: auto;
+  animation: 0.5s commentSlideIn;
 }
 .comment-form > input[type="text"], textarea {
   border-radius: 10px;
   background-color : #fc4b4b;
 }
+
+@keyframes commentSlideIn {
+  from {
+    transform: translate(0px, -50px) scaleY(0);
+  }
+
+  to {
+    transform: translate(0px, 0px) scaleY(1);
+  }
+}
+
 .label-title {
   grid-area: label-title;
 }
@@ -222,20 +321,29 @@ input[type="text"], textarea {
 .comment-card > .card-icons > button{
   background-color: #fc4b4b;
 }
+.comment-card > .card-icons > button:disabled {
+  background-color: #000000af;
+}
 .comment-delete-button {
-  grid-area: delete !important;
+  grid-area: delete;
   background-color: #fc4b4b;
   width: fit-content;
-  align-self: center;
-  justify-self: center;
+  align-self: right;
+  justify-self: right;
 }
 
+.card-image-container {
+  grid-area: image;
+  align-self: center;
+  width: 100%;
+  height: 100%;
+}
 .card-image {
   grid-area: image;
   border-radius: 20px;
-  object-fit: cover;
+  object-fit:cover;
   width: 100%;
-  height: 90%;
+  height: 100%;
   align-self: center;
   }
 .card-title {
@@ -261,6 +369,12 @@ input[type="text"], textarea {
   text-align: left;
   overflow-y: auto;
 }
+.small-card-body {
+  grid-area: body;
+  text-align: left;
+  overflow-y:hidden;
+  line-height: 0.4;
+}
 .card-icons {
   display:flex;
   grid-area: icons;
@@ -271,6 +385,7 @@ input[type="text"], textarea {
   height: fit-content;
   grid-area: comments;
   margin-top: 10px;
+  width: 95%;
 }
 
 *::-webkit-scrollbar{
@@ -296,6 +411,16 @@ input[type="text"], textarea {
   background: rgb(252, 75, 75);
   @media (max-height: 600px) {
     height: 60px;
+  }
+  animation: 1s footerSlideIn;
+}
+@keyframes footerSlideIn {
+  from {
+    transform: translate(0px, 100px);
+  }
+
+  to {
+    transform: translate(0px, 0px);
   }
 }
 

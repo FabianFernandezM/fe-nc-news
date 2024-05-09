@@ -1,21 +1,26 @@
 import {Link} from 'react-router-dom'
 
 export default function SmallCard({article}) {
+    const date = new Date(article.created_at)
+    const datesliced = date.toString().slice(3, 21)
+
     return (
         <>
         <div className="card-small">
-            <Link to={`/articles/${article.article_id}`} className="card-image">
-                <img className="card-image" src={article.article_img_url} alt="Post image" />
+            <Link to={`/articles/${article.article_id}`} className="card-image-container">
+                <img src={article.article_img_url} alt="Post image" className="card-image" />
             </Link>
             <Link to={`/articles/${article.article_id}`} className="card-title">
             <h2 className="card-title">{article.title}</h2>
             </Link>
-            <p className="card-body">"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
-            <div className="card-icons">
-                <h1 className ="icon">^</h1>
-                <h1 className ="votes-counter">{article.comment_count}</h1>
-                <h1 className ="icon">v</h1>
+            <Link to={`/articles/${article.article_id}`}>
+            <div className="small-card-body">
+                <p>Posted by: {article.author}</p>
+                <p>{datesliced}</p>
+                <p>Topic: {article.topic}</p>
+                <h4>{article.comment_count} comments ◈ {article.votes} votes</h4>
             </div>
+            </Link>
         </div>
         </>
     )

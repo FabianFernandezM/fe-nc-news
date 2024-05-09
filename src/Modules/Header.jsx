@@ -1,16 +1,26 @@
 import { useContext } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate, useLocation} from 'react-router-dom'
 import { UserContext } from '../Contexts/User'
 
-export default function Header() {
+export default function Header({showSearch, setShowSearch}) {
     const {user, setUser} = useContext(UserContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleShowSearch = (e) => {
+        e.preventDefault();
+        if (location.pathname === "/" || location.pathname === "/articles") setShowSearch(!showSearch)
+        else {
+            setShowSearch(true)
+            navigate(`/`)
+        }
+    }
 
     return (
         <>
             <div className="header">
-                <Link to={`/`} className="icon"><h2>Back</h2></Link>
-                <Link to={`/`} className="icon"><h2>Search</h2></Link>
-                <Link to={`/`} className="icon"><h2>{user}</h2></Link>
+                <a className="icon icon-search" onClick={handleShowSearch}><h2></h2></a>
+                <Link to={`/`} className="icon icon-user"><h2></h2></Link>
             </div>
         </>
     )
