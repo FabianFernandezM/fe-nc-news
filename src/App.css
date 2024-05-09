@@ -7,6 +7,15 @@
   }
 }
 
+textarea {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 1.5vh;
+}
+textarea::placeholder {
+  color: #ffffff;
+}
+
+
 * {
   border: blue 0px solid;
   scrollbar-width: none;
@@ -60,17 +69,19 @@ input[type="text"], textarea {
 }
 
 .search-button {
-  background: url("../resources/Images/SearchButton.png");
+  background-image: url("../resources/Images/SearchButton.png");
   background-size:cover;
   background-repeat: no-repeat;
   background-position: center;
+  border-radius: 50%;
   align-self: center;
-  width: 15%;
-  height: 80%;
+  width: 3rem;
+  height: 3rem;
   transition: 0.2s;
+  transform: scale(0.8);
 }
 .search-button:hover {
-  transform: scale(1.2);
+  transform: scale(1);
   border-color: #ffffff00;
 }
 
@@ -156,7 +167,7 @@ input[type="text"], textarea {
 .card-small {
   display: grid;
   grid-template-columns: 30% 65%;
-  grid-template-rows: 5vh 15vh 5vh;
+  grid-template-rows: 5vh 10vh 5vh;
   grid-template-areas:
     'image title'
     'image body'
@@ -196,13 +207,15 @@ input[type="text"], textarea {
   margin-bottom: 20px;
   scrollbar-width: none;
   height: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .comment-form {
   display: grid;
-  grid-template-columns: 12% 68% 15%;
+  grid-template-columns: 80% 15%;
   grid-template-areas:
-    'label-body body button';
+    'body button';
   column-gap: 10px;
   row-gap: 10px;
   padding: 10px;
@@ -215,11 +228,23 @@ input[type="text"], textarea {
   border-radius: 20px;
   scrollbar-width: none;
   height: auto;
+  animation: 0.5s commentSlideIn;
 }
 .comment-form > input[type="text"], textarea {
   border-radius: 10px;
   background-color : #fc4b4b;
 }
+
+@keyframes commentSlideIn {
+  from {
+    transform: translate(0px, -50px) scaleY(0);
+  }
+
+  to {
+    transform: translate(0px, 0px) scaleY(1);
+  }
+}
+
 .label-title {
   grid-area: label-title;
 }
@@ -269,12 +294,18 @@ input[type="text"], textarea {
   justify-self: center;
 }
 
+.card-image-container {
+  grid-area: image;
+  align-self: center;
+  width: 100%;
+  height: 100%;
+}
 .card-image {
   grid-area: image;
   border-radius: 20px;
-  object-fit: cover;
+  object-fit:cover;
   width: 100%;
-  height: 90%;
+  height: 100%;
   align-self: center;
   }
 .card-title {
@@ -300,6 +331,12 @@ input[type="text"], textarea {
   text-align: left;
   overflow-y: auto;
 }
+.small-card-body {
+  grid-area: body;
+  text-align: left;
+  overflow-y:hidden;
+  line-height: 0.4;
+}
 .card-icons {
   display:flex;
   grid-area: icons;
@@ -310,6 +347,7 @@ input[type="text"], textarea {
   height: fit-content;
   grid-area: comments;
   margin-top: 10px;
+  width: 95%;
 }
 
 *::-webkit-scrollbar{

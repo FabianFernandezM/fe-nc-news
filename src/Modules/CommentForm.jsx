@@ -35,8 +35,7 @@ export default function CommentForm ({article_id, comments, setComments, updateP
     return (
         <>
             <form className="comment-form" action="">
-                <label className="label-body">Comment: </label>
-                <textarea className="comment-body" type="text" value={body} onChange={handleBody}/>
+                <textarea className="comment-body" type="text" value={body} onChange={handleBody} placeholder="Type your comment" />
                 <button className="comment-button" onClick={handleSubmit}>Post</button>
             </form>
         </>
