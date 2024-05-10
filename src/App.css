@@ -131,6 +131,37 @@ input[type="text"], textarea {
     transform: translate(0px, 0px);
   }
 }
+.popup-window {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
+  margin:auto;
+  width: 50vw;
+  height: 40vh;
+  background: #fc4b4b;
+  border: black 3px solid;
+  border-radius: 20px;
+  top:60px;
+  z-index: 1;
+  animation: 0.5s popUp;
+}
+@keyframes popUp {
+  0% {transform: scale(0.1)}
+  60% {transform: scale(1.1)}
+  70% {transform: scale(1.1)}
+  100% {transform: scale(1)}
+}
+.popup-image {
+  height: 50%;
+  width: 50%;
+  align-self: center;
+  margin-top:20px;
+}
 
 .user-window {
   display: flex;
@@ -178,7 +209,7 @@ input[type="text"], textarea {
   border-bottom: black 3px solid;
   border-radius: 20px;
   top:60px;
-  animation: 1s slidein;
+  animation: 0.5s slidein;
   @media (min-width: 600px) {
     width: 480px;
   }
