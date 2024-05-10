@@ -12,15 +12,17 @@ export default function ArticlesList({showSearch}) {
     const [topicQuery, setTopicQuery] = useState(searchParams.get("topic") || "");
     const [sortByQuery, setSortByQuery] = useState(searchParams.get("sort_by") || "");
     const [orderQuery, setOrderQuery] = useState(searchParams.get("order") || "");
-    const [pageQuery, setPageQuery] = useState(searchParams.get("p") || "");
+    const [pageQuery, setPageQuery] = useState(searchParams.get("p") || 1);
     const navigate = useNavigate();
 
     const [articlesList, setArticlesList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
+    const [totalPages, setTotalPages] = useState(1)
 
     const handleTopic = (e) => {
         e.preventDefault()
+        setPageQuery(1)
         setTopicQuery(e.target.value)
         setSearchParams({ topic: e.target.value });
     }
@@ -31,6 +33,10 @@ export default function ArticlesList({showSearch}) {
     const handleOrder = (e) => {
         setOrderQuery(e.target.value)
         setSearchParams({ order: e.target.value });
+    }
+    const handlePage = (e) => {
+        setPageQuery(Number(pageQuery) + Number(e.target.value))
+        setSearchParams({ p: e.target.value });
     }
 
 
@@ -53,9 +59,16 @@ export default function ArticlesList({showSearch}) {
             if (!prevQuery) { urlString += `?`; prevQuery=true } else { urlString += `&` }
             urlString += `order=${orderQuery}`
         }
+        if (pageQuery.length !== 0) {
+            if (!prevQuery) { urlString += `?`; prevQuery=true } else { urlString += `&` }
+            urlString += `p=${pageQuery}`
+        }
 
         axios.get(urlString)
-        .then(data => {setArticlesList(data.data.articles); console.log(data.data)})
+        .then(data => {
+            setArticlesList(data.data.articles);
+            setTotalPages(Math.ceil(data.data.total_count/10))
+        })
         .then(()=> {
             setIsLoading(false);
             navigate(urlString.slice(37))
@@ -82,10 +95,13 @@ export default function ArticlesList({showSearch}) {
                     return <SmallCard key={article.article_id} article={article}/>
                  })}
 
-                <div className="page-bar">
-                    <h2> Prev </h2>
+                <div className="page-container">
+                    <button value={-1} className="icon icon-prev" onClick={handlePage} disabled={Number(pageQuery) < 2}></button>
+                    <h2 style={{color:'black'}}>{pageQuery || 1}</h2>
+                    <button value={1} className="icon icon-next" onClick={handlePage} disabled={Number(pageQuery) >= totalPages}></button>
                 </div>
             </div>
+
         </>
     )
 }

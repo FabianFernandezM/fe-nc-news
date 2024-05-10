@@ -152,7 +152,6 @@ input[type="text"], textarea {
 }
 .icon-downvote:hover {
   transform: scale(-0.8);
-  border-color: #ffffff00;
 }
 .icon-delete-comment {
   background-image: url("../resources/Images/close-icon.png");
@@ -160,7 +159,16 @@ input[type="text"], textarea {
 .icon-empty {
   width: 3.7rem;
 }
-
+.icon-next {
+  background-image: url("../resources/Images/next-arrow-icon.png");
+}
+.icon-prev {
+  background-image: url("../resources/Images/next-arrow-icon.png");
+  transform: scale(-0.6);
+}
+.icon-prev:hover {
+  transform: scale(-0.8);
+}
 .votes-counter {
   margin:auto;
 }
@@ -169,6 +177,15 @@ input[type="text"], textarea {
   overflow-y: scroll;
   margin-top: 20;
   scrollbar-width: none;
+}
+.page-container {
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 30%;
+  display: flex;
+  flex-direction: row;
 }
 
 .comment-container {
