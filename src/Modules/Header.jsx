@@ -1,9 +1,11 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import {Link, useNavigate, useLocation} from 'react-router-dom'
 import { UserContext } from '../Contexts/User'
+import UserWindow from './UserWindow';
 
 export default function Header({showSearch, setShowSearch}) {
     const {user, setUser} = useContext(UserContext)
+    const [showUser, setShowUser] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -16,12 +18,17 @@ export default function Header({showSearch, setShowSearch}) {
         }
     }
 
+    const handleShowUser = (e) => {
+        setShowUser(!showUser)
+    }
+
     return (
         <>
             <div className="header">
                 <a className="icon icon-search" onClick={handleShowSearch}><h2></h2></a>
-                <Link to={`/`} className="icon icon-user"><h2></h2></Link>
+                <a className="icon icon-user" onClick={handleShowUser}><h2></h2></a>
             </div>
+            <UserWindow class="user-window" showUser={showUser} user={user}/>
         </>
     )
 }
