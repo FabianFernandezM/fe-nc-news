@@ -72,6 +72,7 @@ export default function ArticlesList({showSearch}) {
         })
         .then(()=> {
             setIsLoading(false);
+            if (pageQuery > totalPages) setError({code: "404", message: "Not found"})
             navigate(urlString.slice(37))
         })
         .catch((error)=>{
