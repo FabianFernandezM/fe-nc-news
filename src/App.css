@@ -143,11 +143,16 @@ input[type="text"], textarea {
   margin:auto;
   width: 50vw;
   height: 40vh;
+  max-width: 300px;
+  max-height: 280px;
+  min-height: 180px;
   background: #fc4b4b;
   border: black 3px solid;
   border-radius: 20px;
   top:60px;
-  z-index: 1;
+  z-index: 0;
+  align-content: center;
+  justify-content: center;
   animation: 0.5s popUp;
 }
 @keyframes popUp {
@@ -572,6 +577,7 @@ input[type="text"], textarea {
   height: 50px;
   background: rgb(252, 75, 75);
   animation: 1s footerSlideIn;
+  z-index: 1;
 }
 @keyframes footerSlideIn {
   from {
