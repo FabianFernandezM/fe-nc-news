@@ -106,6 +106,7 @@ input[type="text"], textarea {
 }
 
 .query-bar {
+  position: absolute;
   display:flex;
   flex-direction: row;
   width: 80%;
@@ -114,9 +115,16 @@ input[type="text"], textarea {
   align-items: center;
   justify-content: space-around;
   background: #fc4b4b;
+  border-right: black 5px dotted;
+  border-left: black 5px dotted;
+  border-top: black 3px solid;
+  border-bottom: black 3px solid;
   border-radius: 20px;
-  margin-top: 10px;
+  top:60px;
   animation: 1s slidein;
+  @media (min-width: 600px) {
+    width: 480px;
+  }
 }
 
 @keyframes slidein {
