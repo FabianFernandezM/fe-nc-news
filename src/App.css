@@ -44,11 +44,71 @@ input[type="text"], textarea {
     height: 100vh;
   }
 }
+
 .loading-container {
+  position:relative;
   height: 80vh;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-content: center;
   text-align: center;
+}
+.loading-icon {
+  position: absolute;
+  background-color : #d73e3e;
+  border-radius: 100%;
+  border-right: black 5px dotted;
+  border-left: black 5px dotted;
+  border-top: black 3px solid;
+  border-bottom: black 5px solid;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  width: 20vh;
+  height: 20vh;
+  animation: 2s loadingAnim alternate infinite;
+}
+.loading-1 {
+  animation: 3s loadingAnim alternate infinite;
+  left: 15vw;
+}
+.loading-2 {
+  animation: 2.5s loadingAnim alternate infinite;
+  width: 15vh;
+  height: 15vh;
+  right: 15vw;
+  top:25vh;
+}
+.loading-3 {
+  animation: 5s loadingAnim2 alternate infinite;
+  width: 30vh;
+  height: 30vh;
+  top:25vh;
+}
+.loading-text {
+  margin-top:7vh;
+  font-size:xx-large;
+}
+@keyframes loadingAnim {
+  from {
+    transform: scale(0.8);
+  }
+
+  to {
+    transform: scale(1);
+    transform: rotate(30deg);
+  }
+}
+@keyframes loadingAnim2 {
+  from {
+    transform: scale(0.8);
+  }
+
+  to {
+    transform: scale(1);
+    transform: rotate(-30deg);
+  }
 }
 
 .header {
