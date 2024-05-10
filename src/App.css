@@ -116,13 +116,10 @@ input[type="text"], textarea {
   display:flex;
   flex-direction: row;
   margin-top: 0;
-  height: 10%;
+  height: 50px;
   border-bottom: black 5px dotted;
   background: #fc4b4b;
   z-index: 2;
-  @media (max-height: 600px) {
-    height: 60px;
-  }
   animation: 1s headerSlideIn;
 }
 @keyframes headerSlideIn {
@@ -268,6 +265,12 @@ input[type="text"], textarea {
 .icon-prev:hover {
   transform: scale(-0.8);
 }
+.icon-comment-button {
+  grid-area: comment-button;
+  transform: scale(0.8);
+  background-image: url("../resources/Images/comment-icon.png");
+  right:10px;
+}
 .votes-counter {
   margin:auto;
 }
@@ -298,6 +301,10 @@ input[type="text"], textarea {
   column-gap: 10px;
   padding: 20px;
   border-radius: 20px;
+  border-right: black 5px dotted;
+  border-left: black 5px dotted;
+  border-top: black 3px solid;
+  border-bottom: black 5px solid;
   background: #fc4b4b;
   width: 60%;
   margin-left: auto;
@@ -331,6 +338,7 @@ input[type="text"], textarea {
   column-gap: 10px;
   padding: 10px;
   border-radius: 20px;
+  border: black 3px solid;
   background: #fc4b4b;
   width: 80%;
   margin-left: auto;
@@ -353,9 +361,11 @@ input[type="text"], textarea {
     'body body'
     'icons comment-button'
     'comments comments';
+  grid-template-columns: 80% 20%;
   column-gap: 10px;
   padding: 10px;
   border-radius: 20px;
+  border: black 3px solid;
   background: #fc4b4b;
   width: 80%;
   margin-left: auto;
@@ -480,12 +490,6 @@ input[type="text"], textarea {
   text-align: left;
   text-wrap:wrap;
 }
-.big-card-comment-button {
-  grid-area: comment-button;
-  width:50%;
-  justify-self: right;
-  background-color: #d73e3e;
-}
 .card-body {
   grid-area: body;
   text-align: left;
@@ -529,11 +533,8 @@ input[type="text"], textarea {
   flex-direction: row;
   border-top: black 5px dotted;
   margin-bottom: 0;
-  height: 10%;
+  height: 50px;
   background: rgb(252, 75, 75);
-  @media (max-height: 600px) {
-    height: 60px;
-  }
   animation: 1s footerSlideIn;
 }
 @keyframes footerSlideIn {
