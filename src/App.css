@@ -52,13 +52,14 @@ input[type="text"], textarea {
 }
 
 .header {
+  position:relative;
   display:flex;
   flex-direction: row;
   margin-top: 0;
   height: 10%;
   border-bottom: black 5px dotted;
   background: #fc4b4b;
-  z-index: 1;
+  z-index: 2;
   @media (max-height: 600px) {
     height: 60px;
   }
@@ -66,12 +67,42 @@ input[type="text"], textarea {
 }
 @keyframes headerSlideIn {
   from {
-    transform: translate(0px, -100px);
+    transform: translate(0px, -150px);
   }
 
   to {
     transform: translate(0px, 0px);
   }
+}
+
+.user-window {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  position:absolute;
+  width: 200px;
+  height: 50px;
+  background: #fc4b4b;
+  border-right: black 5px dotted;
+  border-left: black 5px dotted;
+  border-top: black 3px solid;
+  border-bottom: black 3px solid;
+  border-radius: 20px;
+  top:60px;
+  right: 10px;
+  z-index: 1;
+  animation: 0.5s headerSlideIn;
+}
+.user-image {
+  border-radius: 20px;
+}
+.user-username {
+  text-align: center;
+  margin: auto;
+}
+.icon-logout {
+  background-image: url("../resources/Images/logout-icon.png");
+  transform: scale(0.8) !important;
 }
 
 .query-bar {
@@ -248,7 +279,6 @@ input[type="text"], textarea {
 
 .card-big {
   display: grid;
-  grid-template-columns: 30% 65%;
   grid-template-areas:
     'image image'
     'title title'
@@ -386,6 +416,7 @@ input[type="text"], textarea {
   grid-area: comment-button;
   width:50%;
   justify-self: right;
+  font-size: 2.5vw;
   background-color: #d73e3e;
 }
 .card-body {
@@ -440,7 +471,7 @@ input[type="text"], textarea {
 }
 @keyframes footerSlideIn {
   from {
-    transform: translate(0px, 100px);
+    transform: translate(0px, 150px);
   }
 
   to {
