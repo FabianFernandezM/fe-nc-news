@@ -11,6 +11,7 @@ export default function Header({showSearch, setShowSearch}) {
 
     const handleShowSearch = (e) => {
         e.preventDefault();
+        setShowUser(false)
         if (location.pathname === "/" || location.pathname === "/articles") setShowSearch(!showSearch)
         else {
             setShowSearch(true)
@@ -19,6 +20,7 @@ export default function Header({showSearch, setShowSearch}) {
     }
 
     const handleShowUser = (e) => {
+        setShowSearch(false)
         setShowUser(!showUser)
     }
 
