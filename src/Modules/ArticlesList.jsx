@@ -4,6 +4,7 @@ import SmallCard from "./SmallCard"
 import ErrorPage from "./ErrorPage"
 import "../App.css"
 import axios from "axios"
+import QueryBar from "./QueryBar"
 
 export default function ArticlesList({showSearch}) { 
 
@@ -19,6 +20,7 @@ export default function ArticlesList({showSearch}) {
     const [error, setError] = useState(null)
 
     const handleTopic = (e) => {
+        e.preventDefault()
         setTopicQuery(e.target.value)
         setSearchParams({ topic: e.target.value });
     }
@@ -61,41 +63,28 @@ export default function ArticlesList({showSearch}) {
         .catch((error)=>{
             setError({code: error.response.status, message: error.response.data.message})
         })
-    }, [topicQuery, sortByQuery, orderQuery])
+    }, [topicQuery, sortByQuery, orderQuery, pageQuery])
 
     if (error) return <ErrorPage error={error}/>
-    if (isLoading) return <h1>Loading...</h1>
+    if (isLoading) return (
+        <>
+            <QueryBar handleTopic={handleTopic} handleSortBy={handleSortBy} handleOrder={handleOrder} showSearch={showSearch} />
+            <h1 className="loading-container">Loading...</h1>
+        </>
+        )
 
     else return (
         <>  
-            {showSearch ? 
-            <div className="query-bar">
-                <label htmlFor="topics"><h3>Topic:</h3></label>
-                <select name="topic" id="topic" className="query-dropdown" onChange={handleTopic}>
-                    <option value="">All</option>
-                    <option value="cooking">Cooking</option>
-                    <option value="coding">Coding</option>
-                    <option value="football">Football</option>
-                </select>
-                <label htmlFor="sort-by"><h3>Sort by:</h3></label>
-                <select name="sort-by" id="sort-by" className="query-dropdown" onChange={handleSortBy}>
-                    <option value="created_at">Date</option>
-                    <option value="comment_count">Comment Count</option> Commented due to DB issue
-                    <option value="votes">Votes</option>
-                </select>
-                <label htmlFor="order"><h3>Order:</h3></label>
-                <select name="order" id="order" className="query-dropdown" onChange={handleOrder}>
-                    <option value="asc">Ascending</option>
-                    <option value="desc">Descending</option>
-                </select>
-            </div> : null}
-
-            <script type="text/javascript">document.getElementById("topic").namedItem({topicQuery}).selected=true</script>
+            <QueryBar handleTopic={handleTopic} handleSortBy={handleSortBy} handleOrder={handleOrder} showSearch={showSearch} />
 
             <div className="list-container">
-             {articlesList.map(article => {
-                return <SmallCard key={article.article_id} article={article}/>
-             })}
+                 {articlesList.map(article => {
+                    return <SmallCard key={article.article_id} article={article}/>
+                 })}
+
+                <div className="page-bar">
+                    <h2> Prev </h2>
+                </div>
             </div>
         </>
     )

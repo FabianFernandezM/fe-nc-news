@@ -44,6 +44,12 @@ input[type="text"], textarea {
     height: 100vh;
   }
 }
+.loading-container {
+  height: 80vh;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
 
 .header {
   display:flex;
@@ -72,7 +78,8 @@ input[type="text"], textarea {
   display:flex;
   flex-direction: row;
   width: 80%;
-  align-self: center;
+  align-self:center ;
+  justify-self: baseline;
   align-items: center;
   justify-content: space-around;
   background: #fc4b4b;
