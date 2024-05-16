@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 export default function UserWindow ({showUser, user}) {
 
     const [imgUrl, setImgUrl] = useState("")
+    const [error, setError] = useState(null)
 
     useEffect(()=>{
         axios.get(`https://nc-news-78g8.onrender.com/api/users/${user}`)
@@ -13,9 +14,11 @@ export default function UserWindow ({showUser, user}) {
         .then(()=>{
         })
         .catch((error)=>{
-            setError({code: error.response.status, message: error.response.data.message})
+            setError(null)
         })
     }, [])
+
+    if (error) return <ErrorPage error={error}/>
 
     return (
         <>

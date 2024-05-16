@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import {useNavigate, useParams} from 'react-router-dom'
+import LoadingIcon from "./LoadingIcon"
 import BigCard from "./BigCard"
 import ErrorPage from "./ErrorPage"
 import "../App.css"
@@ -33,7 +34,7 @@ export default function ArticleById() {
     }, [updatePage])
 
     if (error) return <ErrorPage error={error}/>
-    if (isLoading) return <h1>Loading...</h1>
+    if (isLoading) return <LoadingIcon />
     return (
         <div className="list-container">
             <BigCard article={article} comments={comments} setComments={setComments} updatePage={updatePage} setUpdatePage={setUpdatePage}/>

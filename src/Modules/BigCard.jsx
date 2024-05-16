@@ -49,7 +49,7 @@ export default function BigCard({article, comments, setComments, updatePage, set
                 {loadingVotes ? <h2 className ="votes-counter">...</h2> : <h2 className ="votes-counter">{article.votes+currVote}</h2>}
                 <button className ="icon icon-downvote"  disabled={currVote===-1} onClick={() => handleVote(-1)}></button>
             </div>
-            <button className ="big-card-comment-button" onClick={handleShowCommentForm}>{showCommentForm ? "Hide" : "Comment"}</button>
+            <button className ="icon icon-comment-button" onClick={handleShowCommentForm}></button>
             <div className="card-comments">
                 {showCommentForm ? <CommentForm article_id={article.article_id}comments={comments} setComments={setComments} updatePage={updatePage} setUpdatePage={setUpdatePage}/> : null}
                 {comments.map((comment) => {

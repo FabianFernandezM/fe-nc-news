@@ -5,6 +5,7 @@ import ErrorPage from "./ErrorPage"
 import "../App.css"
 import axios from "axios"
 import QueryBar from "./QueryBar"
+import LoadingIcon from "./LoadingIcon"
 
 export default function ArticlesList({showSearch}) { 
 
@@ -71,6 +72,7 @@ export default function ArticlesList({showSearch}) {
         })
         .then(()=> {
             setIsLoading(false);
+            if (pageQuery > totalPages) setError({code: "404", message: "Not found"})
             navigate(urlString.slice(37))
         })
         .catch((error)=>{
@@ -82,7 +84,7 @@ export default function ArticlesList({showSearch}) {
     if (isLoading) return (
         <>
             <QueryBar handleTopic={handleTopic} handleSortBy={handleSortBy} handleOrder={handleOrder} showSearch={showSearch} />
-            <h1 className="loading-container">Loading...</h1>
+            <LoadingIcon />
         </>
         )
 
