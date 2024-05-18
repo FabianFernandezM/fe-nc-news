@@ -142,9 +142,7 @@ input[type="text"], textarea {
   bottom:0;
   margin:auto;
   width: 50vw;
-  height: 40vh;
-  max-width: 300px;
-  max-height: 280px;
+  height: 60vh;
   min-height: 180px;
   background: #fc4b4b;
   border: black 3px solid;
