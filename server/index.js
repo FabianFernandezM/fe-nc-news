@@ -1,10 +1,10 @@
-import express from 'express'
+const express = require('express')
 const app = express()
 
-import http from "http"
-import { Server } from "socket.io"
+const http = require("http")
+const { Server } = require("socket.io")
 
-import cors from "cors"
+const cors = require("cors")
 app.use(cors())
 
 const server = http.createServer(app)
