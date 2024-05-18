@@ -8,12 +8,7 @@ import cors from "cors"
 app.use(cors())
 
 const server = http.createServer(app)
-const io = new Server(server, {
-    cors: {
-        origin: "http://localhost:5175",
-        methods: ["GET", "POST"]
-    }
-})
+const io = new Server(server)
 
 io.on("connection", (socket) => {
     console.log(`user connected: ${socket.id}`)
