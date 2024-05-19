@@ -2,7 +2,7 @@
 import io from "socket.io-client"
 import {useEffect, useState} from "react"
 
-const socket = io.connect("fe-nc-news-production.up.railway.app")
+const socket = io.connect("https://fe-nc-news-production.up.railway.app/")
 
 export default function Chat() {
   const [room, setRoom] = useState("1")
