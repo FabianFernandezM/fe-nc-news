@@ -8,7 +8,12 @@ const cors = require("cors")
 app.use(cors())
 
 const server = http.createServer(app)
-const io = new Server(server)
+const io = new Server(server, {
+    cors: {
+        origin: "fe-nc-news-production.up.railway.app",
+        methods: ["GET", "POST"]
+    }
+})
 
 io.on("connection", (socket) => {
     console.log(`user connected: ${socket.id}`)
