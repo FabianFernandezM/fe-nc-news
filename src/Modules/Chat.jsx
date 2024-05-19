@@ -2,7 +2,7 @@
 import io from "socket.io-client"
 import {useEffect, useState} from "react"
 
-const socket = io.connect("https://peaceful-waters-01379-cd0c2d10d8f8.herokuapp.com/")
+const socket = io.connect("fe-nc-news-production.up.railway.app")
 
 export default function Chat() {
   const [room, setRoom] = useState("1")
