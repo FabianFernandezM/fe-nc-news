@@ -10,7 +10,7 @@ app.use(cors())
 const server = http.createServer(app)
 const io = new Server(server, {
     cors: {
-        origin: "https://fe-nc-news-production.up.railway.app/",
+        origin: "https://socket-test-25-50.netlify.app/",
         methods: ["GET", "POST"]
     }
 })
